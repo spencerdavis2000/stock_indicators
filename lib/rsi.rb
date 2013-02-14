@@ -70,6 +70,6 @@ class RSI
 	#Then get RS value and then the RSI
 end
 
-binding.pry
+#binding.pry
 
 
