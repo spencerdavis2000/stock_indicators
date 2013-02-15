@@ -82,21 +82,40 @@ def calculate_average_loss(period)
 		n += 1
 	end
 end
+def calculate_rs
+	@average_loss.size.times do |i|
+		temp = (@average_gain[i]/@average_loss[i]).abs
+		@rs << temp
+	end
+end
+def calculate_rsi
+	@average_loss.size.times do |i|
+		temp = 100 - (100/(1+@rs[i]))
+		@rsi << temp.round(2)
+	end
+end
+def run
+	gain_loss(@price["QQQQ"])
+	calculate_average_gain(14)
+	calculate_average_loss(14)
+	calculate_rs
+	calculate_rsi
+end
 #period.upto(arr.size) do 
 
-gain_loss(@price["QQQQ"])
-calculate_average_gain(14)
-calculate_average_loss(14)
-puts "\n"
-puts "The size of @average_gain is : #{@average_gain.size}"
-puts @average_gain.map {|num| num.round(2)}.to_s.green
-puts @average_loss.map {|num| num.round(2)}.to_s.red
-puts "The size of the average_gain is: #{@average_gain.size}".green
-puts "The size of the average_loss is: #{@average_loss.size}".red
+
+# puts "\n"
+# puts "The size of @average_gain is : #{@average_gain.size}"
+# puts @average_gain.map {|num| num.round(2)}.to_s.green
+# puts @average_loss.map {|num| num.round(2)}.to_s.red
+# puts "The size of the average_gain is: #{@average_gain.size}".green
+# puts "The size of the average_loss is: #{@average_loss.size}".red
+# puts @rs.to_s.blue
+# puts @rsi.to_s.yellow
 	#===================================
 	#Then get RS value and then the RSI
 
 
-#binding.pry
+binding.pry
 
 
