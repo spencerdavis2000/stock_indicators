@@ -88,6 +88,7 @@ def calculate_rs
 		@rs << temp
 	end
 end
+
 def calculate_rsi
 	@average_loss.size.times do |i|
 		temp = 100 - (100/(1+@rs[i]))
