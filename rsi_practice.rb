@@ -1,11 +1,31 @@
 require 'pry'
 require 'colorize'
 
-@price = {'QQQQ' => [43.13,42.66,43.42,44.57,44.22,44.18,44.03,45.35,
-		  45.78,46.45,45.71,46.25,46.21,45.64,46.22,46.41,
-		  46.03,46.00,46.28,46.28,45.61,46.03,45.89,46.08,
-		  45.84,45.42,45.10,44.83,44.33,43.61,
-		  44.15,44.09,44.34]}
+# @price = {'QQQQ' => [43.13,42.66,43.42,44.57,44.22,44.18,44.03,45.35,
+# 		  45.78,46.45,45.71,46.25,46.21,45.64,46.22,46.41,
+# 		  46.03,46.00,46.28,46.28,45.61,46.03,45.89,46.08,
+# 		  45.84,45.42,45.10,44.83,44.33,43.61,
+# 		  44.15,44.09,44.34]}
+@price = {'MSFT'=> [46.1250,
+					47.1250,
+					46.4375,
+					46.9375,
+					44.9375,
+					44.2500,
+					44.6250,
+					45.7500,
+					47.8125,
+					47.5625,
+					47.0000,
+					44.5625,
+					46.3125,
+					47.6875,
+					46.6875,
+					45.6875,
+					43.0625,
+					43.5625,
+					44.8750,
+					43.6875]}
 @gain = []
 @loss = []
 @average_gain = []
@@ -22,10 +42,10 @@ def gain_loss(instrument)
 	#First get change = previous - last
 	# Then get the gains and loss
 	@price_holder = instrument
-	last = @price_holder.pop
 	@price_holder.size.times do
-		previous = @price_holder.pop
-		difference = previous - last
+		last = @price_holder.pop
+		previous = @price_holder
+		difference = last - previous
 		if difference >= 0
 			@gain << difference.round(2)
 			@loss << 0.0
@@ -33,7 +53,7 @@ def gain_loss(instrument)
 			@loss << difference.round(2)
 			@gain << 0.0
 		end
-		last = previous
+
 	end
 end
 
@@ -96,7 +116,7 @@ def calculate_rsi
 	end
 end
 def run
-	gain_loss(@price["QQQQ"])
+	gain_loss(@price["MSFT"])
 	calculate_average_gain(14)
 	calculate_average_loss(14)
 	calculate_rs

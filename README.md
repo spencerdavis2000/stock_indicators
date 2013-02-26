@@ -7,8 +7,8 @@ levels.
 This can also be used with price levels to show divergence (price going up and
 RSI going down or vice versa)
 
-30 and below is considered to be oversold
-70 and above is considered to be overbought
+	30 and below is considered to be oversold
+	70 and above is considered to be overbought
 
 As with all indicators, there is a duality.  In heavy trends, the RSI usually 
 stays embeded 50 to 90 for a long time.  This is where it is more of a momentum
@@ -21,15 +21,16 @@ So, this is a pretty decent "exit indicator"
 
 Calculations
 ===================
-RSI = 100 - (100/(1+RS))
+	RSI = 100 - (100/(1+RS))
 
-RS = Average Gain / Average Loss
+	RS = Average Gain / Average Loss
 
 difference = previous price - last price
 if difference >= 0 it is called a "Gain" which goes in the @gain container.
 elsif difference =< 0 it is called a "Loss" which goes into the @loss container.
 
 Average Gain is calculated from the gain container by:
+========================================================
 	1.  First value = the sum of last 14 (period = 14) values/14 
 	2.  Next values = [(previous average gain)*13 + current gain]/14
 The previous average gain comes from the @average_gain container and the 
@@ -43,6 +44,8 @@ an array.  However, I am using the term in terms of what it is doing which
 is acting as a container to hold stuff for a while until I don't need it.
 
 After this comes the RS calculation:
+====================================
+
 	RS = Average Gain/Average Loss
 	so each element from the @average_gain and @average_loss will be
 	calculated.  What is nice is they are both the same size 
